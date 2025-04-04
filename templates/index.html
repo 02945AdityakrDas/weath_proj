@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div class="background">
+        <div class="sun"></div>
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+        <div class="trees"></div>
+    </div>
+
+    <div class="container text-center">
+        <h1 class="mb-4">🌤 Weather App</h1>
+
+        <form method="POST" class="search-box">
+            <input type="text" name="location" placeholder="Enter Location Name" ...>
+
+            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Get Weather</button>
+        </form>
+
+        {% if error %}
+        <div class="alert alert-danger mt-3">{{ error }}</div>
+        {% endif %}
+
+        {% if weather %}
+        <div class="weather-card">
+            <h3>{{ weather.location }}</h3>
+            <p><img src="{{ weather.icon }}" alt="Weather Icon"> {{ weather.condition }}</p>
+            <p><strong>🌡 Temp:</strong> {{ weather.temp_c }}°C / {{ weather.temp_f }}°F</p>
+            <p><strong>💧 Humidity:</strong> {{ weather.humidity }}%</p>
+            <p><strong>🌬 Wind:</strong> {{ weather.wind_kph }} km/h</p>
+            <p><strong>😮‍💨 PM2.5 AQI:</strong> {{ weather.aqi | round(1) }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
